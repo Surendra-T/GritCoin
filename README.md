@@ -1,7 +1,5 @@
 # GritCoin – Student Productivity Tracker
 
-### Video Demo: https://youtu.be/2UPIXkume70
-
 ## Description
 GritCoin is a full‑stack productivity and finance web application for students. It combines study session tracking and daily expense logging into one clean, data‑driven dashboard. The goal behind GritCoin is to help students visualize where they invest two of their scarcest resources — time and money — and manage both responsibly in a single place.
 

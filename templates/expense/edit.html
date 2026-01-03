@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Expense - GritCoin{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h2 class="card-title mb-4">
+                    <i class="bi bi-pencil text-success"></i> Edit Expense
+                </h2>
+                
+                <form method="POST" action="{{ url_for('expense.edit_expense', expense_id=expense.id) }}">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category *</label>
+                        <input type="text" class="form-control" id="category" name="category" 
+                               required autofocus value="{{ expense.category }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount ($) *</label>
+                        <input type="number" class="form-control" id="amount" name="amount" 
+                               required min="0.01" step="0.01" value="{{ expense.amount }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date *</label>
+                        <input type="date" class="form-control" id="date" name="date" 
+                               required value="{{ expense.date.strftime('%Y-%m-%d') }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes (Optional)</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3">{{ expense.notes if expense.notes else '' }}</textarea>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Update Expense
+                        </button>
+                        <a href="{{ url_for('expense.list_expenses') }}" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

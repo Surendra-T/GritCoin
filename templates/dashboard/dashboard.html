@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - GritCoin{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">
+    <i class="bi bi-speedometer2 text-primary"></i> Dashboard
+</h2>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-4">
+    <!-- Weekly Summary -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-primary">
+            <div class="card-body">
+                <h5 class="card-title text-primary">
+                    <i class="bi bi-calendar-week"></i> This Week
+                </h5>
+                <p class="text-muted small mb-2">
+                    {{ week_start.strftime('%b %d') }} - {{ week_end.strftime('%b %d, %Y') }}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="mb-1"><strong>Study:</strong> {{ weekly_study }} min</p>
+                        <p class="mb-0"><strong>Expenses:</strong> ${{ weekly_expenses }}</p>
+                    </div>
+                    <i class="bi bi-graph-up text-primary" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Monthly Summary -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-success">
+            <div class="card-body">
+                <h5 class="card-title text-success">
+                    <i class="bi bi-calendar-month"></i> This Month
+                </h5>
+                <p class="text-muted small mb-2">
+                    {{ month_start.strftime('%b %d') }} - {{ month_end.strftime('%b %d, %Y') }}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="mb-1"><strong>Study:</strong> {{ monthly_study }} min</p>
+                        <p class="mb-0"><strong>Expenses:</strong> ${{ monthly_expenses }}</p>
+                    </div>
+                    <i class="bi bi-bar-chart text-success" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quarterly Summary -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-info">
+            <div class="card-body">
+                <h5 class="card-title text-info">
+                    <i class="bi bi-calendar3"></i> This Quarter
+                </h5>
+                <p class="text-muted small mb-2">
+                    {{ quarter_start.strftime('%b %d') }} - {{ quarter_end.strftime('%b %d, %Y') }}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="mb-1"><strong>Study:</strong> {{ quarterly_study }} min</p>
+                        <p class="mb-0"><strong>Expenses:</strong> ${{ quarterly_expenses }}</p>
+                    </div>
+                    <i class="bi bi-pie-chart text-info" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Period Selector -->
+<div class="mb-3">
+    <label class="form-label fw-bold">View Charts For:</label>
+    <div class="btn-group" role="group">
+        <input type="radio" class="btn-check" name="period" id="periodWeek" value="week" checked>
+        <label class="btn btn-outline-primary" for="periodWeek">Week</label>
+        
+        <input type="radio" class="btn-check" name="period" id="periodMonth" value="month">
+        <label class="btn btn-outline-primary" for="periodMonth">Month</label>
+        
+        <input type="radio" class="btn-check" name="period" id="periodQuarter" value="quarter">
+        <label class="btn btn-outline-primary" for="periodQuarter">Quarter</label>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-book"></i> Daily Study Time
+                </h5>
+                <canvas id="studyChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-wallet2"></i> Daily Expenses
+                </h5>
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Study Sessions - GritCoin{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>
+        <i class="bi bi-book text-primary"></i> My Study Sessions
+    </h2>
+    <a href="{{ url_for('study.add_session') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add New Session
+    </a>
+</div>
+
+{% if sessions %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Subject</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                <tr>
+                    <td>
+                        <strong>{{ session.subject }}</strong>
+                    </td>
+                    <td>
+                        <span class="badge bg-info">{{ session.duration }} min</span>
+                    </td>
+                    <td>
+                        {{ session.date.strftime('%b %d, %Y') }}
+                    </td>
+                    <td>
+                        {% if session.notes %}
+                            {{ session.notes[:50] }}{% if session.notes|length > 50 %}...{% endif %}
+                        {% else %}
+                            <span class="text-muted fst-italic">No notes</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a href="{{ url_for('study.edit_session', session_id=session.id) }}" 
+                               class="btn btn-sm btn-outline-primary" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="{{ url_for('study.delete_session', session_id=session.id) }}" 
+                                  class="d-inline" onsubmit="return confirm('Are you sure you want to delete this session?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="alert alert-info mt-3">
+        <i class="bi bi-info-circle"></i>
+        <strong>Total Sessions:</strong> {{ sessions|length }} | 
+        <strong>Total Time:</strong> {{ sessions|sum(attribute='duration') }} minutes
+    </div>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> No Study Sessions Yet</h4>
+        <p>You haven't logged any study sessions. Start tracking your study time to see your progress!</p>
+        <hr>
+        <a href="{{ url_for('study.add_session') }}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Your First Session
+        </a>
+    </div>
+{% endif %}
+{% endblock %}

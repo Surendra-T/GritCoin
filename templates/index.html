@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}GritCoin - Track Your Study & Expenses{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold mb-3">
+        <i class="bi bi-graph-up-arrow text-primary"></i> Welcome to GritCoin
+    </h1>
+    <p class="lead text-muted mb-4">
+        The all-in-one platform for students to track study sessions and manage daily expenses.
+    </p>
+    
+    {% if not current_user.is_authenticated %}
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-person-plus"></i> Get Started
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+        </div>
+    {% else %}
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-speedometer2"></i> Go to Dashboard
+        </a>
+    {% endif %}
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 py-5">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center fs-2 mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-book"></i>
+                </div>
+                <h3 class="card-title h5">Track Study Sessions</h3>
+                <p class="card-text text-muted">
+                    Log your study sessions with subject, duration, and notes. Stay organized and motivated.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-success bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center fs-2 mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-wallet2"></i>
+                </div>
+                <h3 class="card-title h5">Manage Expenses</h3>
+                <p class="card-text text-muted">
+                    Track your daily expenses by category. Know where your money goes and budget better.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-info bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center fs-2 mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-bar-chart"></i>
+                </div>
+                <h3 class="card-title h5">Visual Insights</h3>
+                <p class="card-text text-muted">
+                    Beautiful charts and summaries show your weekly, monthly, and quarterly progress.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Info -->
+<div class="row py-5">
+    <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-3">Why GritCoin?</h2>
+        <p class="lead text-muted mb-4">
+            Built specifically for students, GritCoin combines study tracking and expense management 
+            in one simple, beautiful interface. No complicated features, no distractions—just what you need 
+            to stay productive and financially aware.
+        </p>
+        
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="p-3">
+                    <i class="bi bi-shield-check text-primary fs-1"></i>
+                    <h5 class="mt-2">Secure</h5>
+                    <p class="text-muted small">Your data is protected with industry-standard encryption.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3">
+                    <i class="bi bi-lightning text-warning fs-1"></i>
+                    <h5 class="mt-2">Fast</h5>
+                    <p class="text-muted small">Lightweight and responsive. Works on any device.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3">
+                    <i class="bi bi-currency-dollar text-success fs-1"></i>
+                    <h5 class="mt-2">Free</h5>
+                    <p class="text-muted small">100% free to use. No hidden costs or subscriptions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 # GritCoin – Student Productivity Tracker
 
 ## Description
-GritCoin is a full‑stack productivity and finance web application for students. It combines study session tracking and daily expense logging into one clean, data‑driven dashboard. The goal behind GritCoin is to help students visualize where they invest two of their scarcest resources — time and money — and manage both responsibly in a single place.
+GritCoin is a productivity and finance web application for students. It combines study session tracking and daily expense logging into one clean, data‑driven dashboard. The goal behind GritCoin is to help students visualize where they invest two of their scarcest resources — time and money — and manage both responsibly in a single place.
 
 Built with Python (Flask) for the backend, SQLite for persistent storage, and a dynamic Bootstrap + Chart.js frontend, GritCoin demonstrates the full development cycle students learn in CS50: database design, secure authentication, frontend responsiveness, and server‑side logic integration.
 
@@ -154,6 +154,5 @@ This project is open source under the MIT License.
 
 ## Credits
 Developed by Surendra Tripathi as the CS50x 2025 Final Project.
-Big thanks to the CS50 staff and community for documentation and testing utilities.
 
 GritCoin – Encouraging balance between time, money, and growth.
